@@ -146,7 +146,7 @@
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
 										<span>2 Items</span>
-										<a href="#">View Cart</a>
+										<a href="{%url 'cart'%}">View Cart</a>
 									</div>
 									<ul class="shopping-list">
 										<li>
@@ -167,7 +167,7 @@
 											<span>Total</span>
 											<span class="total-amount">$134.00</span>
 										</div>
-										<a href="checkout.html" class="btn animate">Checkout</a>
+										<a href="{%url 'checkout'%}" class="btn animate">Checkout</a>
 									</div>
 								</div>
 								<!--/ End Shopping Item -->
@@ -258,22 +258,22 @@
 										<div class="nav-inner">	
 											<ul class="nav main-menu menu navbar-nav">
 													<li class="active"><a href="#">Home</a></li>
-													<li><a href="#">Product</a></li>												
+													<li><a href="{% url 'shopgrid'%}">Product</a></li>												
 													<li><a href="#">Service</a></li>
 													<li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
 														<ul class="dropdown">
 															<li><a href="shop-grid.html">Shop Grid</a></li>
-															<li><a href="cart.html">Cart</a></li>
-															<li><a href="checkout.html">Checkout</a></li>
+															<li><a href="{% url 'cart'%}">Cart</a></li>
+															<li><a href="{% url 'checkout'%}">Checkout</a></li>
 														</ul>
 													</li>
 													<li><a href="#">Pages</a></li>									
 													<li><a href="#">Blog<i class="ti-angle-down"></i></a>
 														<ul class="dropdown">
-															<li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
+															<li><a href="{% url 'blog' %}">Blog Single Sidebar</a></li>
 														</ul>
 													</li>
-													<li><a href="contact.html">Contact Us</a></li>
+													<li><a href="{%url 'contactus'%}">Contact Us</a></li>
 												</ul>
 										</div>
 									</div>
@@ -345,7 +345,7 @@
 								<li><a href="#">About Us</a></li>
 								<li><a href="#">Faq</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
-								<li><a href="#">Contact Us</a></li>
+								<li><a href="{%url 'contactus'%}">Contact Us</a></li>
 								<li><a href="#">Help</a></li>
 							</ul>
 						</div>
