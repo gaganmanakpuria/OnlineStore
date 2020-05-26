@@ -70,6 +70,8 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL= 'onlineapp.Persons'
+
 WSGI_APPLICATION = 'onlinestore.wsgi.application'
 
 

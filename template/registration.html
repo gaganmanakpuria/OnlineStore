@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{%load static%}
+{%block base%}
+<div class="container">
+    <div class="col-md-4 mx-auto">
+        <form action="" method="post">
+            {%csrf_token%}
+            <label for="">Email</label>
+            <input type="text" class="form-control" name="emaillogin">
+            <label for="">Username</label>
+            <input type="text" class="form-control" name="usernamelogin">
+            <label for="">Password</label>
+            <input type="text" class="form-control" name="passwordlogin">
+            <input type="submit" placeholder="Submit" class="form-control">
+        </form>
+
+    </div>
+
+</div>
+{%endblock%}
