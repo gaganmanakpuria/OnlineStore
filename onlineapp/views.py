@@ -15,9 +15,21 @@ def register(request):
         us=request.POST['usernamelogin']
         ps = request.POST['passwordlogin']
         User = get_user_model()
+        user = User.objects.create_user(em,us,ps)
+        user.save()
+    return render(request,"suplier_regis.html")
+
+def suplier_register(request):
+    
+    if request.method=="POST":
+        em=request.POST['emaillogin']
+        us=request.POST['usernamelogin']
+        ps = request.POST['passwordlogin']
+        User = get_user_model()
         user = User.objects.create_staffuser(em,us,ps)
         user.save()
     return render(request,"registration.html")
+
 def loginus(request):
     if request.method=="POST":
         em=request.POST['emaillogin']
