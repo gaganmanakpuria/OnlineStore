@@ -104,7 +104,7 @@ class PersonsManager(BaseUserManager):
 		user.save(using=self._db)
 		return user
 class Persons(AbstractBaseUser):
-    # person_id = models.BigIntegerField(primary_key=True,auto_created=True, serialize=False,null=False,blank=False)
+    # person_id = models.AutoField(primary_key=True,null=False,editable=False)
     # principal_name = models.CharField(max_length=60 ,blank=True, null=True)
     # title = models.CharField(max_length=12, blank=True, null=True)
     first_name = models.CharField(max_length=30, blank=True, null=True)
@@ -129,7 +129,7 @@ class Persons(AbstractBaseUser):
     # contactable_flag = models.CharField(max_length=1,blank=True, null=True)
     # contact_by_affilliates_flag = models.CharField(max_length=1,blank=True, null=True)
     # created_by = models.CharField(max_length=60,blank=True, null=True)
-    creation_date = models.DateTimeField(auto_now_add=True)
+    update_date = models.DateTimeField(auto_now=True)
     # last_updated_by = models.CharField(max_length=60)
     username = models.CharField(max_length=250,unique=True)
     last_update_date = models.DateTimeField( verbose_name="last login " ,auto_now=True,blank=True, null=True)

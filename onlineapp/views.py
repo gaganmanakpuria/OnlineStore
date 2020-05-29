@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from .models import Persons
 from django.contrib.auth import authenticate,login,logout
+from django.apps import apps
 # from django.contrib.auth.models import User
 # Create your views here.
 def home(request):
@@ -28,21 +29,22 @@ def suplier_register(request):
         em=request.POST['emailsel']
         us=request.POST['usernamesel']
         ps = request.POST['passwordsel']
-        phnnum= request.POST['phonenumbersel']
-        mobilenum= request.POST['Mobilenumbersel']
-        Dob=request.POST['dateofbirthsel']
-        maritalstatus=request.POST['maritalstatussel']
-        gen= request.POST['gendersel']
-        Supplier= request.POST['supliersel']
-        crditlimit=request.POST['creditlimitsel']
-        Apinc = request.POST['approximateincomesel']
+        # phnnum= request.POST['phonenumbersel']
+        # mobilenum= request.POST['Mobilenumbersel']
+        # Dob=request.POST['dateofbirthsel']
+        # # maritalstatus=request.POST['maritalstatussel']
+        # gen= request.POST['gendersel']
+        # Supplier= request.POST['supliersel']
+        # crditlimit=request.POST['creditlimitsel']
+        # Apinc = request.POST['approximateincomesel']
         User = get_user_model()
         user = User.objects.create_staffuser(em,us,ps)
-        user.firstname=fn
+        user.first_name=fn
+
         user.save()
-        user=User.objects.get(username=us)
-        a=user(firstname=fn,lastname=ln,supplier=Supplier,credit_limit=crditlimit,approximate_income=Apinc,gender=gen,marital_status_code=maritalstatus,date_of_birth=Dob,mobile_phone_number=mobilenum,phone_number=phnnum)
-        a.save()
+
+        # a=User(firstname=fn,lastname=ln,credit_limit=crditlimit,approximate_income=Apinc,gender=gen,marital_status_code=None,date_of_birth=Dob,mobile_phone_number=mobilenum,phone_number=phnnum)
+        # a.save()
          
     return render(request,"suplier_regis.html")
 
@@ -79,8 +81,8 @@ def admin_dashboard(request):
     context={}
     
     User= get_user_model()
-    Alluser = User.objects.all()
-    context['all'] =Alluser
+    Sellers = User.objects.all().filter(is_staff=True)
+    context['sellers'] =Sellers
     user=User.objects.filter(is_staff=False,is_active=False)
     context['user'] =user
     if request.method=="POST":
@@ -94,6 +96,11 @@ def admin_dashboard(request):
             sidd =request.POST['ssid']
             user=User.objects.get(id=sidd)
             user.save()
+        if 'delete_sel_btn' in request.POST:
+            email=request.POST['delte_sel_email']
+            delte_seler= User.objects.get(email=email)
+            delte_seler.delete()
+
 
     return render(request,"admin/tables.html",context)
 # def g(r):

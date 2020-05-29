@@ -172,7 +172,7 @@
     <!-- DataTales for users -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">All Users</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Approved Sellers</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -196,9 +196,16 @@
               </tr>
             </tfoot>
             <tbody>
-              {%for i in all%}
+              {%for i in sellers%}
               <tr>
-                <td>{{i.username}}</td>
+                <td>{{i.first_name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.gender}}</td>
+                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aps{{i.id}}">
+                  Detail
+                </button></td>
+                <!-- <td><button data-toggle="modal" data-target="#apsu{{i.id}}">edit</button> -->
+               <td> <button data-toggle="modal" data-target="#apsd{{i.id}}">delete</button></td>
               </tr>
               {%endfor%}
             </tbody>
@@ -209,7 +216,142 @@
     
 
     </div>
-    
+
+    {% for i in sellers%}
+    <!-- for show details of sellers -->
+    <div class="modal fade" id="aps{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+         
+          <div class="modal-body">
+           <div class="container-fluid">
+             <div class="row">
+               <div class="col-md-12">
+                <table class="table  table-hover table-responsive">
+                  <tbody>
+                    <tr>
+                      <th>First_name</th>
+                      <td>{{i.first_name}}</td>
+                    </tr>
+                    <tr>
+                      <th>Last_name</th>
+                      <td>{{i.last_name}}</td>
+                    </tr>
+                    <tr>
+                      <th>Supplier</th>
+                      <td>{{i.supplier}}</td>
+                    </tr>
+                    <tr>
+                      <th>Email</th>
+                      <td>{{i.email}}</td>
+                    </tr>
+                    <tr>
+                      <th>Username</th>
+                      <td>{{i.username}}</td>
+                    </tr>
+                    <tr>
+                      <th>Registered Date</th>
+                      <td>{{i.creation_date}}</td>
+                    </tr>
+                    <tr>
+                      <th>Primary Address</th>
+                      <td>{{i.primary_address}}</td>
+                    </tr>
+                    <tr>
+                      <th>Phone Number</th>
+                      <td>{{i.phone_number}}</td>
+                    </tr>
+                    <tr>
+                      <th>Mobile Number</th>
+                      <td>{{i.mobile_phone_number}}</td>
+                    </tr>
+                    <tr>
+                      <th>Credit_limit</th>
+                      <td>{{i.credit_limit}}</td>
+                    </tr>
+                    <tr>
+                      <th>Date_of_birth</th>
+                      <td>{{i.date_of_birth}}</td>
+                    </tr>
+                    <tr>
+                      <th>Matarial Status</th>
+                      <td>{{i.marital_status_code}}</td>
+                    </tr>
+                    <tr>
+                      <th>Gender</th>
+                      <td>{{i.gender}}</td>
+                    </tr>
+                    <tr>
+                      <th>Approximate_income</th>
+                      <td>{{i.approximate_income}}</td>
+                    </tr>
+                  </tbody>
+ 
+                 </table>
+
+               </div>
+
+             </div>
+
+           </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+
+    <!-- for deletesellers data  -->
+    <div class="modal fade" id="apsd{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+         
+          <div class="modal-body">
+           <div class="container-fluid">
+             <div class="row">
+               <div class="col-md-12">
+                <table class="table  table-hover table-responsive">
+                  <tbody>
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h1>Do You really want to delete this user?</h1>
+
+
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <form action="" method="post">
+                            {%csrf_token%}
+                            <input type="text" value="{{i.email}}" name="delte_sel_email" style="visibility: hidden;">
+                            <input type="submit" value="Confirm" name="delete_sel_btn" class="btn btn-lg btn-success px-3">
+                          </form>
+                        </div>
+                        <div class="col-md-6">
+                            <a type="submit" href="{% url 'admin_dashboard' %}"  class="btn btn-lg btn-danger px-3">Cancel</a>
+                        </div>
+                      </div>
+                      
+
+                    </div>
+                 
+                  </tbody>
+ 
+                 </table>
+
+               </div>
+
+             </div>
+
+           </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+
+    {%endfor%}
     <!-- End of Content Wrapper -->
 
   </div>
