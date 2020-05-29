@@ -87,9 +87,9 @@ class PersonsManager(BaseUserManager):
 			password=password,
 			username=username,
 		)
-		user.is_staff = True
+		user.is_staff = False
 		user.is_superuser = False
-		user.is_active = True
+		user.is_active = False
 		user.save(using=self._db)
 		return user
 	def create_activeuser(self, email, username, password):
@@ -105,35 +105,35 @@ class PersonsManager(BaseUserManager):
 		return user
 class Persons(AbstractBaseUser):
     # person_id = models.BigIntegerField(primary_key=True,auto_created=True, serialize=False,null=False,blank=False)
-    principal_name = models.CharField(max_length=60 ,blank=True, null=True)
-    title = models.CharField(max_length=12, blank=True, null=True)
+    # principal_name = models.CharField(max_length=60 ,blank=True, null=True)
+    # title = models.CharField(max_length=12, blank=True, null=True)
     first_name = models.CharField(max_length=30, blank=True, null=True)
     last_name = models.CharField(max_length=30, blank=True, null=True)
-    person_type_code = models.CharField(max_length=30,blank=True, null=True)
+    # person_type_code = models.CharField(max_length=30,blank=True, null=True)
     supplier = models.ForeignKey('Suppliers', models.DO_NOTHING, blank=True, null=True)
-    provisioned_flag = models.CharField(max_length=1, blank=True, null=True)
+    # provisioned_flag = models.CharField(max_length=1, blank=True, null=True)
     primary_address = models.ForeignKey(Addresses, models.DO_NOTHING, blank=True, null=True)
     registered_date = models.DateTimeField(blank=True, null=True)
     membership = models.ForeignKey(MembershipsBase, models.DO_NOTHING, blank=True, null=True)
     email = models.EmailField(max_length=250,unique=True,db_index=True)
-    confirmed_email = models.EmailField(unique=True,max_length=25, blank=True, null=True)
+    # confirmed_email = models.EmailField(unique=True,max_length=25, blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     mobile_phone_number = models.CharField(max_length=20, blank=True, null=True,unique=True)
     credit_limit = models.FloatField(blank=True, null=True)
     date_of_birth = models.DateTimeField(blank=True, null=True)
     marital_status_code = models.CharField(max_length=30,blank=True, null=True)
     gender = models.CharField(max_length=1,blank=True, null=True)
-    children_under_18 = models.SmallIntegerField(blank=True, null=True)
+    # children_under_18 = models.SmallIntegerField(blank=True, null=True)
     approximate_income = models.BigIntegerField(blank=True, null=True)
-    contact_method_code = models.CharField(max_length=30, blank=True, null=True)
-    contactable_flag = models.CharField(max_length=1,blank=True, null=True)
-    contact_by_affilliates_flag = models.CharField(max_length=1,blank=True, null=True)
-    created_by = models.CharField(max_length=60,blank=True, null=True)
+    # contact_method_code = models.CharField(max_length=30, blank=True, null=True)
+    # contactable_flag = models.CharField(max_length=1,blank=True, null=True)
+    # contact_by_affilliates_flag = models.CharField(max_length=1,blank=True, null=True)
+    # created_by = models.CharField(max_length=60,blank=True, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     # last_updated_by = models.CharField(max_length=60)
     username = models.CharField(max_length=250,unique=True)
     last_update_date = models.DateTimeField( verbose_name="last login " ,auto_now=True,blank=True, null=True)
-    object_version_id = models.BigIntegerField(blank=True, null=True)
+    # object_version_id = models.BigIntegerField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -173,3 +173,5 @@ class Suppliers(models.Model):
         db_table = 'suppliers'
 
 
+class statussupliers(models.Model):
+    status=models.CharField(max_length=250)

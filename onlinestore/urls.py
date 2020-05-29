@@ -26,7 +26,9 @@ urlpatterns = [
     path('shopgrid/', views.shopgrid,name="shopgrid"),
     path('register/', views.register,name="register"),
     path('suplier_regis/', views.suplier_register,name="suplier_regis"),
+    path('admin_dashboard/',views.admin_dashboard,name="admin_dashboard"),
     path('login/', views.loginus,name="login"),
     path('cust_dashboard/', views.cust_dashboard,name="cust_dashboard"),
     path('blog/', views.blog,name="blog"),
+    # path('g/', views.g,name="g"),
 ]

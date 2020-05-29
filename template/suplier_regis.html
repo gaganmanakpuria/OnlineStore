@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 {%load static%}
 {%block base%}
-<div class="container">
+<!-- <div class="container">
     <div class="col-md-4 mx-auto">
         <form action="" method="post">
             {%csrf_token%}
@@ -13,6 +13,112 @@
             <input type="text" class="form-control" name="passwordlogin">
             <input type="submit" placeholder="Submit" class="form-control">
         </form>
+
+    </div>
+
+</div> -->
+
+<div class="container">
+    <div class="row bg-lite mb-3 mt-5 pt-5" style="box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
+        <div class="col-md-8  mx-auto ">
+            <form action="" method="post">
+                {%csrf_token%}
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="">Firstname</label>
+                        <input type="text" class="form-control" name="firstnamesel">
+                       
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Lastname</label>
+                        <input type="text" class="form-control" name="lastnamesel">
+                       
+                    </div>
+    
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                           
+                        <label for="">Email</label>
+                        <input type="text" class="form-control" name="emailsel">
+                        <label for=""> Confirmed Email</label>
+                        <input type="text" class="form-control" name="confirmemailsel">
+                        <label for="">Username</label>
+                        <input type="text" class="form-control" name="usernamesel">
+                        <label for="">Password</label>
+                        <input type="text" class="form-control" name="passwordsel">
+                        <label for=""> Confirmed Password</label>
+                        <input type="text" class="form-control" name="passwordsel">
+                        <label for="">Phone Number</label>
+                        <input type="text" class="form-control" name="phonenumbersel">
+
+                        <label for="">Mobile Number</label>
+                        <input type="text" class="form-control" name="Mobilenumbersel">
+                        <label for="">Date of Birth</label>
+                        <br>
+                        <input type="text" name="dateofbirthsel" class="form-control" placeholder="YYYY-MM-DD" required 
+                        pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" 
+                        title="Enter a date in this format YYYY-MM-DD"/>   
+                        <br>       
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row col-md-12">
+                                    <label for="industry" class="">Marital Status :</label>
+                                    <br>
+                                    <select  class="form-control" name="maritalstatussel">
+                                        <option value="" disabled selected>Select Marital Status</option>
+                                        <option value="Maried">Maried</option>
+                                        <option value="Single">Single</option>
+                                    </select>
+                                </div>
+    
+                           </div>
+                           <input type="datetime-local">
+                           <div class="col-md-6">
+                                <div class="form-group row col-md-12">
+                                    <label for="" class="">Gender :</label>
+                                    <select  class="form-control" name="gendersel">
+                                        <option value="" disabled selected>Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+    
+                           </div>
+
+                        </div>
+                        
+                        <div class="form-group row col-md-12">
+                            <label for="industry" class="">Supplier :</label>
+                            <select  class="form-control" name="supliersel">
+                                <option value="" disabled selected>Select Industry</option>
+                                <option value="financial-service">Financial Services</option>
+                                <option value="healthcare-lifescience">Healthcare & Life Science</option>
+                                <option value="communications">Communications</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Approximate_income</label>
+                        <input type="text" class="form-control" name="approximateincomesel" placeholder="approximate_income">
+
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="">Credit Limit</label>
+                            <input type="text" class="form-control" name="creditlimitsel" placeholder="Credit limit">
+
+                        </div>
+                        
+                        <input type="submit"  placeholder="Submit" class=" mb-5 mt-3 form-control">
+    
+                    </div>
+    
+                </div>
+             
+            </form>
+    
+        </div>
 
     </div>
 
