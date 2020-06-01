@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
-from .models import Persons
+from .models import Persons,MembershipsBase,AvailableLanguages
 from django.contrib.auth import authenticate,login,logout
 from django.apps import apps
 # from django.contrib.auth.models import User
@@ -112,6 +112,26 @@ def admin_dashboard(request):
 #         print(sidd)
 #         user=User.objects.get(id=sidd)
 #         print(user)
+def Membershipsbase(request):
+    context={}
+    membership= MembershipsBase.objects.all()
+    context['membership']=membership
+    if request.method=="POST":
+        if "Add" in request.POST:
+            addMembership=request.POST['addMembership']
+            new=MembershipsBase(membership_type_code=addMembership)
+            new.save()
+        if "update" in request.POST:
+            updateMembership=request.POST['updateMembership']
+            prevMembership=request.POST['prevMembership']
+            check=MembershipsBase.objects.get(membership_type_code=prevMembership)
+            check.membership_type_code=updateMembership
+            check.save()
+        if "delete" in request.POST:
+            deleteMembership=request.POST['deleteMembership']
+            membership=MembershipsBase(membership_type_code=deleteMembership)
+            membership.delete()
+    return render(request,"admin/Membershipbas.html",context)
 
 def contactus(request):
     return render(request,"contact.html")
