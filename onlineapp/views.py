@@ -91,7 +91,7 @@ def admin_dashboard(request):
     User= get_user_model()
     Sellers = User.objects.all().filter(is_staff=True)
     context['sellers'] =Sellers
-    user=User.objects.filter(is_staff=False,is_active=False)
+    user=User.objects.filter(is_staff=False,is_active=False,is_superuser=False)
     context['user'] =user
     if request.method=="POST":
         if 'approve' in request.POST:
