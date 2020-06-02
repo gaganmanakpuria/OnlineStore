@@ -38,7 +38,7 @@ class Addresses(models.Model):
 
 
 class MembershipsBase(models.Model):
-    membership_id = models.AutoField(auto_created=True, primary_key=True, serialize=False ,editable=False,blank=True, db_index=True)
+    id = models.AutoField( primary_key=True,editable=False )
     membership_type_code = models.CharField(max_length=250)
     # contact_id = models.BigIntegerField()
     # created_by = models.CharField(max_length=60)
@@ -198,9 +198,9 @@ class AvailableLanguages(models.Model):
     language = models.CharField( max_length=250)
     # default_flag = models.CharField(max_length=1)
     # created_by = models.CharField(max_length=60)
-    creation_date = models.DateTimeField()
+    creation_date = models.DateTimeField(auto_now_add=True)
     # last_updated_by = models.CharField(max_length=60)
-    last_update_date = models.DateTimeField()
+    last_update_date = models.DateTimeField(auto_now=True)
     # object_version_id = models.BigIntegerField()
 
     class Meta:

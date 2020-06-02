@@ -33,7 +33,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Add/Edit Memberships</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Add/Edit Language</h6>
             </div>
             <div class="card-body">
               
@@ -46,7 +46,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Membership</th>
+                      <th>Language</th>
                       <th>Created Date</th>
                       <th>Update Date</th>
 
@@ -56,7 +56,7 @@
                   <tfoot>
                     <tr>
                       <th>#</th>
-                      <th>Membership</th>
+                      <th>Language</th>
                       <th>Created Date</th>
                       <th>Update Date</th>
 
@@ -64,10 +64,10 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    {% for i in membership %}
+                    {% for i in languages %}
                     <tr>
                       <td>{{ forloop.counter }}</td>
-                      <td>{{i.membership_type_code}}</td>
+                      <td>{{i.language}}</td>
                       <td>{{i.creation_date}}</td>
                       <td>{{i.last_update_date}}</td>
                       
@@ -93,12 +93,12 @@
 
 
       <!-- for edit model  -->
-      {% for  i in membership %}
+      {% for  i in languages %}
       <div class="modal fade" id="e{{i.id}}" tabindex="-1" data-backdrop="static"  data-keyboard="false" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog " role="document">
           <div class="modal-content">
             <div class="modal-header">
-             Edit Membership 
+             Edit Language 
               <button  data-dismiss="modal"  class="close" type="button"  >
                   <span aria-hidden="true" >&times;</span>
               </button>
@@ -111,15 +111,15 @@
                   <form action="" method="post">
                     {%csrf_token%}
                     <div class="form-group">
-                      <label for="">Membership</label>
+                      <label for="">Language</label>
 
-                      <input type="text" value="{{i.membership_type_code}}" name="updateMembership" class="form-control">
+                      <input type="text" value="{{i.language}}" name="updateLanguage" class="form-control">
 
                     </div>
-                    <input type="text" value="{{i.id}}" name="prevMembership" class="form-control" style="visibility: hidden;">
+                    <input type="text" value="{{i.id}}" name="previd" class="form-control" style="visibility: hidden;">
 
                     <div class="form-group">
-                      <input type="submit" value="Update Membership" name="update" class="form-control bg-success">
+                      <input type="submit" value="Update Language" name="update" class="form-control bg-success">
 
                     </div>
                   </form>
@@ -151,7 +151,7 @@
                         <div class="container-fluid">
                           <div class="row">
                             <div class="col-md-12">
-                              <h1>Do You really want to delete this Membership Code ?</h1>
+                              <h1>Do You really want to delete this Language ?</h1>
 
 
                             </div>
@@ -161,12 +161,12 @@
                             <div class="col-md-6">
                               <form action="" method="post">
                                 {%csrf_token%}
-                                <input type="text" value="{{i.id}}" name="deleteMembership" style="visibility: hidden;">
+                                <input type="text" value="{{i.id}}" name="deleteLanguage" style="visibility: hidden;">
                                 <input type="submit" value="Confirm" name="delete" class="btn btn-lg btn-success px-3">
                               </form>
                             </div>
                             <div class="col-md-6">
-                                <a type="submit" href="{% url 'Membershipsbase' %}"  class="btn btn-lg btn-danger px-3">Cancel</a>
+                                <a type="submit" href="{% url 'AvailableLanguage' %}"  class="btn btn-lg btn-danger px-3">Cancel</a>
                             </div>
                           </div>
                           
@@ -198,7 +198,7 @@
         <div class="modal-dialog " role="document">
           <div class="modal-content">
             <div class="modal-header">
-             Add Membership
+             Add Language
               <button  data-dismiss="modal"  class="close" type="button"  >
                   <span aria-hidden="true" >&times;</span>
               </button>
@@ -212,12 +212,12 @@
                     {%csrf_token%}
 
                     <div class="form-group">
-                      <label for="">Add Membership</label>
-                      <input type="text"  name="addMembership" class="form-control">
+                      <label for="">Add Language</label>
+                      <input type="text"  name="addLanguage" class="form-control">
 
                     </div>
                     <div class="form-group">
-                      <input type="submit" value="Add Membership" name="Add" class="form-control bg-success">
+                      <input type="submit" value="Add Language" name="Add" class="form-control bg-success">
 
                     </div>
                   </form>

@@ -123,15 +123,36 @@ def Membershipsbase(request):
             new.save()
         if "update" in request.POST:
             updateMembership=request.POST['updateMembership']
-            prevMembership=request.POST['prevMembership']
-            check=MembershipsBase.objects.get(membership_type_code=prevMembership)
+            previd=request.POST['prevMembership']
+            check=MembershipsBase.objects.get(id=previd)
             check.membership_type_code=updateMembership
             check.save()
         if "delete" in request.POST:
             deleteMembership=request.POST['deleteMembership']
-            membership=MembershipsBase(membership_type_code=deleteMembership)
+            membership=MembershipsBase(id=deleteMembership)
             membership.delete()
     return render(request,"admin/Membershipbas.html",context)
+
+def AvailableLanguage(request):
+    context={}
+    languages= AvailableLanguages.objects.all()
+    context['languages']=languages
+    if request.method=="POST":
+        if "Add" in request.POST:
+            addLang=request.POST['addLanguage']
+            new=AvailableLanguages(language=addLang)
+            new.save()
+        if "update" in request.POST:
+            updateLang=request.POST['updateLanguage']
+            previd=request.POST['previd']
+            check=AvailableLanguages.objects.get(id=previd)
+            check.language=updateLang
+            check.save()
+        if "delete" in request.POST:
+            del_lang_id=request.POST['deleteLanguage']
+            Lang=AvailableLanguages(id=del_lang_id)
+            Lang.delete()
+    return render(request,"admin/Language.html",context)
 
 def contactus(request):
     return render(request,"contact.html")
