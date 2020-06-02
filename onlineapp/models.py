@@ -114,7 +114,7 @@ class Persons(AbstractBaseUser):
     # supplier = models.ForeignKey('Suppliers', models.DO_NOTHING, blank=True, null=True)
     # provisioned_flag = models.CharField(max_length=1, blank=True, null=True)
     # primary_address = models.ForeignKey(Addresses, models.DO_NOTHING, blank=True, null=True)
-    registered_date = models.DateTimeField(blank=True, null=True)
+    registered_date = models.DateTimeField(auto_now_add=True,blank=True, null=True)
     # membership = models.ForeignKey(MembershipsBase, models.DO_NOTHING, blank=True, null=True)
     email = models.EmailField(max_length=250,unique=True,db_index=True)
     # confirmed_email = models.EmailField(unique=True,max_length=25, blank=True, null=True)
@@ -157,6 +157,7 @@ class Persons(AbstractBaseUser):
 
 
 class Suppliers(models.Model):
+
     # supplier_id = models.BigIntegerField(primary_key=True)
     supplier_name = models.CharField(max_length=120)
     supplier_status = models.CharField(max_length=30)
@@ -179,20 +180,25 @@ class statussupliers(models.Model):
 
 
 class CountryCodes(models.Model):
-    iso_country_code = models.CharField(primary_key=True, max_length=2)
+    # id = models.AutoField( primary_key=True,editable=False )
+
+    iso_country_code = models.CharField( max_length=10)
     country_name = models.CharField(max_length=100, blank=True, null=True)
-    language = models.CharField(max_length=30)
-    source_lang = models.CharField(max_length=30, blank=True, null=True)
-    created_by = models.CharField(max_length=60)
-    creation_date = models.DateTimeField()
-    last_updated_by = models.CharField(max_length=60)
-    last_update_date = models.DateTimeField()
-    object_version_id = models.BigIntegerField()
+    language = models.CharField(max_length=50)
+    # source_lang = models.CharField(max_length=30, blank=True, null=True)
+    # created_by = models.CharField(max_length=60)
+    creation_date = models.DateTimeField(auto_now_add=True)
+    # last_updated_by = models.CharField(max_length=60)
+    last_update_date = models.DateTimeField(auto_now=True)
+    # object_version_id = models.BigIntegerField()
 
     class Meta:
         managed = True
         db_table = 'country_codes'
         unique_together = (('iso_country_code', 'language'),)
+
+    def __str__(self):
+        return self.country_name
 
 class AvailableLanguages(models.Model):
     language = models.CharField( max_length=250)

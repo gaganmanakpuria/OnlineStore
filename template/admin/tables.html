@@ -28,10 +28,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-
+         
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -101,10 +98,12 @@
                           <th>Last_name</th>
                           <td>{{i.last_name}}</td>
                         </tr>
+                        {% comment %}
                         <tr>
                           <th>Supplier</th>
                           <td>{{i.supplier}}</td>
                         </tr>
+                        {% endcomment %}
                         <tr>
                           <th>Email</th>
                           <td>{{i.email}}</td>
@@ -115,7 +114,7 @@
                         </tr>
                         <tr>
                           <th>Registered Date</th>
-                          <td>{{i.creation_date}}</td>
+                          <td>{{i.registered_date}}</td>
                         </tr>
                         <tr>
                           <th>Primary Address</th>
@@ -237,10 +236,12 @@
                       <th>Last_name</th>
                       <td>{{i.last_name}}</td>
                     </tr>
-                    <tr>
-                      <th>Supplier</th>
-                      <td>{{i.supplier}}</td>
-                    </tr>
+                    {% comment %}
+                        <tr>
+                          <th>Supplier</th>
+                          <td>{{i.supplier}}</td>
+                        </tr>
+                        {% endcomment %}
                     <tr>
                       <th>Email</th>
                       <td>{{i.email}}</td>
@@ -251,7 +252,7 @@
                     </tr>
                     <tr>
                       <th>Registered Date</th>
-                      <td>{{i.creation_date}}</td>
+                      <td>{{i.registered_date}}</td>
                     </tr>
                     <tr>
                       <th>Primary Address</th>

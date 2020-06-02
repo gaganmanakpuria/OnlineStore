@@ -32,5 +32,6 @@ urlpatterns = [
     path('blog/', views.blog,name="blog"),
     path('Membershipsbase/', views.Membershipsbase,name="Membershipsbase"),
     path('AvailableLanguage/', views.AvailableLanguage,name="AvailableLanguage"),
+    path('CountryCodes/', views.CountryCode,name="CountryCodes"),
     # path('g/', views.g,name="g"),
 ]

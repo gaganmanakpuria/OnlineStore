@@ -1,0 +1,267 @@
+{% extends 'admin/admin_base.html' %}
+
+{% load static %}
+{% block admin_base %}
+
+
+
+
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+   
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        
+
+         
+        
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+        
+          
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Add/Edit Country Code</h6>
+            </div>
+            <div class="card-body">
+              
+              <div class="form-group">
+                <input type="submit" value="Add new" data-toggle="modal" data-target="#add_lang" class="btn btn-success px-3">
+
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Country Code</th>
+                        <th>Country Name</th>
+                        <th>Language</th>
+                        <th>Created Date</th>
+                        <th>Update Date</th>
+                        <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>#</th>
+                      <th>Country Code</th>
+                      <th>Country Name</th>
+                      <th>Language</th>
+                      <th>Created Date</th>
+                      <th>Update Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    {% for i in country_code %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{i.iso_country_code}}</td>
+                      <td>{{i.country_name}}</td>
+                      <td>{{i.language}}</td>
+                      <td>{{i.creation_date}}</td>
+                      <td>{{i.last_update_date}}</td>
+                      
+                      <td> 
+                        <button data-toggle="modal" data-target="#e{{i.id}}">E</button>
+                        <button  data-toggle="modal" data-target="#del_lang{{i.id}}">d</button>   
+                       
+                      </td>
+                    </tr>
+                    {%endfor%}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+       
+
+      </div>
+      <!-- End of Main Content -->
+
+
+      <!-- for edit model  -->
+      {% for  i in country_code %}
+      <div class="modal fade" id="e{{i.id}}" tabindex="-1" data-backdrop="static"  data-keyboard="false" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             Edit Country Code 
+              <button  data-dismiss="modal"  class="close" type="button"  >
+                  <span aria-hidden="true" >&times;</span>
+              </button>
+           </div>
+           
+            <div class="modal-body">
+             <div class="container-fluid">
+               <div class="row">
+                 <div class="col-md-12">
+                  <form action="" method="post">
+                    {%csrf_token%}
+                    
+                        <div class="form-group">
+                            <label for="">Country Code</label>
+                            <input type="text" value="{{i.iso_country_code}}" class="form-control" name="update_c_code" id="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Country Name</label>
+                            <input type="text" value="{{i.country_name}}"  class="form-control" name="update_c_name" id="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Language</label>
+                            <input type="text" value="{{i.language}}" class="form-control" name="update_c_lang" id="">
+                        </div>
+                        
+                        
+
+                    
+                    <input type="text" value="{{i.id}}" name="previd" class="form-control" style="visibility: hidden;">
+
+                    <div class="form-group">
+                      <input type="submit" value="Update Country Code" name="update" class="form-control bg-success">
+
+                    </div>
+                  </form>
+  
+                 </div>
+  
+               </div>
+  
+             </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+      <!-- end modal  -->
+
+            <!-- for deleteLanguage data  -->
+        <div class="modal fade" id="del_lang{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                  
+            
+              <div class="modal-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="table  table-hover table-responsive">
+                      <tbody>
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <h1>Do You really want to delete this Country Code ?</h1>
+
+
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <form action="" method="post">
+                                {%csrf_token%}
+                                <input type="text" value="{{i.id}}" name="deleteCode" style="visibility: hidden;">
+                                <input type="submit" value="Confirm" name="delete" class="btn btn-lg btn-success px-3">
+                              </form>
+                            </div>
+                            <div class="col-md-6">
+                                <a type="submit" href="{% url 'CountryCodes' %}"  class="btn btn-lg btn-danger px-3">Cancel</a>
+                            </div>
+                          </div>
+                          
+
+                        </div>
+                    
+                      </tbody>
+    
+                    </table>
+
+                  </div>
+
+                </div>
+
+              </div>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+        <!-- End modal  -->
+
+      
+   
+
+    {%endfor%}
+      <!-- for add new modal  -->
+      <div class="modal fade" id="add_lang" tabindex="-1" data-backdrop="static"  data-keyboard="false" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             Add Country Code
+              <button  data-dismiss="modal"  class="close" type="button"  >
+                  <span aria-hidden="true" >&times;</span>
+              </button>
+           </div>
+           
+            <div class="modal-body">
+             <div class="container-fluid">
+               <div class="row">
+                 <div class="col-md-12">
+                    <form action="" method="post">
+                        {%csrf_token%}
+                            <div class="form-group">
+                                <label for="">Country Code</label>
+                                <input type="text"  class="form-control" name="c_code" id="">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Country Name</label>
+                                <input type="text"  class="form-control" name="c_name" id="">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Language</label>
+                                <input type="text" class="form-control" name="c_lang" id="">
+                            </div>
+                            
+                            
+    
+                        
+    
+                        <div class="form-group">
+                          <input type="submit" value="Add " name="Add" class="form-control bg-success">
+    
+                        </div>
+                      </form>
+      
+  
+                 </div>
+  
+               </div>
+  
+             </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+       <!-- end modal  -->
+      </div>
+  </div>
+  <!-- End of Page Wrapper -->
+  {%endblock%}
+ 
